@@ -1,0 +1,22 @@
+{#
+ Copyright (c) 2026 Joel Torres
+ Licensed under the MIT License. See the file LICENSE for details.
+#}
+
+{% extends "base.html" %}
+{% block title %}{{ site.description | default("Home") }}{% endblock %}
+{% block content %}
+
+{{ page.html }}
+
+<h2>Posts (<a href="/feed.xml">Feed</a>)</h2>
+<ul>
+{% for post in site.pages.post | sort(attribute="date", reverse=true) %}
+    <li>
+        <time datetime="{{ post.date.isoformat() }}">{{ post.date.strftime("%Y %b %d") }}</time> - <a href="{{ post.href }}">{{ post.title }}</a>
+    </li>
+{% endfor %}
+</ul>
+
+{% endblock %}
+

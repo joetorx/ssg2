@@ -1,0 +1,58 @@
+{#
+ Copyright (c) 2026 Joel Torres
+ Licensed under the MIT License. See the file LICENSE for details.
+#}
+
+<!DOCTYPE html>
+<html lang="{{ site.lang | default("en-US") }}">
+<head>
+    {% block head %}
+    <meta charset="{{ site.encoding | default("UTF-8") }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ site.title }} - {% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="/static/simple.css">
+    {%- if site.mastodon %}
+    {%- if site.mastodon.server and site.mastodon.username %}
+    <link rel="me" href="https://{{ site.mastodon.server }}/@{{ site.mastodon.username }}">
+    {%- endif %}
+    {%- endif %}
+    {% endblock %}
+</head>
+<body>
+    <header>
+        <h1><a href="/">{{ site.title }}</a></h1>
+        {% if site.pages.page %}
+        <nav>
+        {% block nav %}
+            {% for page in site.pages.page | sort(attribute="title") %}
+                <a href="{{ page.href }}">{{ page.title }}</a>
+            {% endfor %}
+        {% endblock %}
+        </nav>
+        {% endif %}
+    </header>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer>
+        <p>Copyright &copy; {{ site.author }}</p>
+        {% if site.license %}
+        {% if site.license == "CC-BY-4.0" %}
+        <p>Content is licensed under a
+        <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International license</a>.</p>
+        {% elif site.license == "CC-BY-SA-4.0" %}
+        <p>Content is licensed under a
+        <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative Commons Attribution-ShareAlike 4.0 International license</a>.</p>
+        {% elif site.license == "CC-BY-ND-4.0" %}
+        <p>Content is licensed under a
+        <a href="https://creativecommons.org/licenses/by-nd/4.0/" target="_blank">Creative Commons Attribution-NoDerivatives 4.0 International license</a>.</p>
+        {% endif %}
+        {% endif %}
+    </footer>
+
+</body>
+</html>
+

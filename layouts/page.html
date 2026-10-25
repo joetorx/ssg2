@@ -1,0 +1,23 @@
+{#
+ Copyright (c) 2026 Joel Torres
+ Licensed under the MIT License. See the file LICENSE for details.
+#}
+
+{% extends "base.html" %}
+{% block title %}{{ page.title }}{% endblock %}
+
+{% block nav %}
+{% for npage in site.pages.page | sort(attribute="title") %}
+    {% if npage.title == page.title %}
+	<a aria-current="page" href="{{ page.href }}">{{ page.title }}</a>
+	{% else %}
+	<a href="{{ npage.href }}">{{ npage.title }}</a>
+	{% endif %}
+{% endfor %}
+{% endblock %}
+
+{% block content %}
+<h2>{{ page.title }}</h2>
+{{ page.html }}
+{% endblock %}
+
