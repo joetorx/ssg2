@@ -2,6 +2,10 @@
 
 This repository contains a simple website builder. Useful for a personal website and/or blog.
 
+## Requirements
+
+Python 3.14+
+
 ## Usage
 
 ### Bootstrap the site
